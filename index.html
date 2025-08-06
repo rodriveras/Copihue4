@@ -14,10 +14,54 @@
         <link rel="stylesheet" href="css/leaflet.photon.css">
         <style>
         #map {
-            width: 968px;
-            height: 797px;
+            width: 1054px;
+            height: 541px;
         }
         </style>
+	    <style>
+    #map {
+        width: 1054px;
+        height: 541px;
+    }
+
+<style>
+#map {
+    width: 1054px;
+    height: 541px;
+}
+/* Estilo para la capa 'Vendidas' con fondo circular rojo */
+.etiqueta-vendida-circular {
+    background-color: #ff0000;
+    color: #ffffff;
+    padding: 6px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 10px;
+    white-space: nowrap;
+    line-height: 1;
+    min-width: 25px;
+    text-align: center;
+}
+/* Estilo para la capa 'Disponibles' con fondo circular verde */
+.etiqueta-disponible-circular {
+    background-color: #008000;
+    color: #ffffff;
+    padding: 6px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 10px;
+    white-space: nowrap;
+    line-height: 1;
+    min-width: 25px;
+    text-align: center;
+}
+/* Código para eliminar el pequeño triángulo de las etiquetas circulares */
+.etiqueta-vendida-circular.leaflet-tooltip-top::before,
+.etiqueta-disponible-circular.leaflet-tooltip-top::before {
+    border-style: none;
+}
+</style>
+</style>
         <title></title>
     </head>
     <body>
@@ -39,41 +83,41 @@
         <script src="data/Vendidas_3.js"></script>
         <script src="data/Disponibles_4.js"></script>
         <script src="data/Limite_5.js"></script>
-        <script>
+       <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[-36.12290225670357,-71.78128696350954],[-36.11738844952299,-71.77311870245552]]);
+        }).fitBounds([[-36.12357786810718,-71.78818068566693],[-36.11524213207644,-71.7689103558518]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
         // remove popup's row if "visible-with-data"
         function removeEmptyRowsFromPopupContent(content, feature) {
-         var tempDiv = document.createElement('div');
-         tempDiv.innerHTML = content;
-         var rows = tempDiv.querySelectorAll('tr');
-         for (var i = 0; i < rows.length; i++) {
-             var td = rows[i].querySelector('td.visible-with-data');
-             var key = td ? td.id : '';
-             if (td && td.classList.contains('visible-with-data') && feature.properties[key] == null) {
-                 rows[i].parentNode.removeChild(rows[i]);
-             }
-         }
-         return tempDiv.innerHTML;
+            var tempDiv = document.createElement('div');
+            tempDiv.innerHTML = content;
+            var rows = tempDiv.querySelectorAll('tr');
+            for (var i = 0; i < rows.length; i++) {
+                var td = rows[i].querySelector('td.visible-with-data');
+                var key = td ? td.id : '';
+                if (td && td.classList.contains('visible-with-data') && feature.properties[key] == null) {
+                    rows[i].parentNode.removeChild(rows[i]);
+                }
+            }
+            return tempDiv.innerHTML;
         }
         // add class to format popup if it contains media
-		function addClassToPopupIfMedia(content, popup) {
-			var tempDiv = document.createElement('div');
-			tempDiv.innerHTML = content;
-			if (tempDiv.querySelector('td img')) {
-				popup._contentNode.classList.add('media');
-					// Delay to force the redraw
-					setTimeout(function() {
-						popup.update();
-					}, 10);
-			} else {
-				popup._contentNode.classList.remove('media');
-			}
-		}
+        function addClassToPopupIfMedia(content, popup) {
+            var tempDiv = document.createElement('div');
+            tempDiv.innerHTML = content;
+            if (tempDiv.querySelector('td img')) {
+                popup._contentNode.classList.add('media');
+                    // Delay to force the redraw
+                    setTimeout(function() {
+                        popup.update();
+                    }, 10);
+            } else {
+                popup._contentNode.classList.remove('media');
+            }
+        }
         var zoomControl = L.control.zoom({
             position: 'topleft'
         }).addTo(map);
@@ -114,12 +158,11 @@
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
+            layer.on('popupopen', function(e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
         }
-
         function style_Acceso_2_0() {
             return {
                 pane: 'pane_Acceso_2',
@@ -163,12 +206,11 @@
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
+            layer.on('popupopen', function(e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
         }
-
         function style_Vendidas_3_0() {
             return {
                 pane: 'pane_Vendidas_3',
@@ -177,7 +219,7 @@
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1, 
+                weight: 1,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(227,26,28,0.0)',
@@ -217,12 +259,11 @@
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
+            layer.on('popupopen', function(e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
         }
-
         function style_Disponibles_4_0() {
             return {
                 pane: 'pane_Disponibles_4',
@@ -231,7 +272,7 @@
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
-                weight: 1, 
+                weight: 1,
                 fill: true,
                 fillOpacity: 1,
                 fillColor: 'rgba(25,243,45,0.0)',
@@ -259,12 +300,11 @@
                     </tr>\
                 </table>';
             var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
+            layer.on('popupopen', function(e) {
+                addClassToPopupIfMedia(content, e.popup);
+            });
+            layer.bindPopup(content, { maxHeight: 400 });
         }
-
         function style_Limite_5_0() {
             return {
                 pane: 'pane_Limite_5',
@@ -292,42 +332,14 @@
         });
         bounds_group.addLayer(layer_Limite_5);
         map.addLayer(layer_Limite_5);
-        map.on("zoomend", function(e) {
-            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
-                map.addLayer(layer_Vendidas_3);
-            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
-                map.removeLayer(layer_Vendidas_3);
-            }
-            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
-                map.addLayer(layer_Disponibles_4);
-            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
-                map.removeLayer(layer_Disponibles_4);
-            }
-        });
-            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
-                map.addLayer(layer_Vendidas_3);
-            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
-                map.removeLayer(layer_Vendidas_3);
-            }
-            if (map.getZoom() <= 19 && map.getZoom() >= 14) {
-                map.addLayer(layer_Disponibles_4);
-            } else if (map.getZoom() > 19 || map.getZoom() < 14) {
-                map.removeLayer(layer_Disponibles_4);
-            }
         var overlaysTree = [
             {label: '<img src="legend/Limite_5.png" /> Limite', layer: layer_Limite_5},
-            {label: '<img src="legend/Disponibles_4.png" /> Disponibles', layer: layer_Disponibles_4},
-            {label: '<img src="legend/Vendidas_3.png" /> Vendidas', layer: layer_Vendidas_3},
             {label: '<img src="legend/Acceso_2.png" /> Acceso', layer: layer_Acceso_2},
+            {label: "Vendidas", layer: layer_Vendidas_3},
+            {label: "Disponibles", layer: layer_Disponibles_4},
             {label: "Satelite", layer: layer_Satelite_1, radioGroup: 'bm' },
             {label: "OpenStreetMap", layer: layer_OpenStreetMap_0, radioGroup: 'bm' },]
         var lay = L.control.layers.tree(null, overlaysTree,{
-            //namedToggle: true,
-            //selectorBack: false,
-            //closedSymbol: '&#8862; &#x1f5c0;',
-            //openedSymbol: '&#8863; &#x1f5c1;',
-            //collapseAll: 'Collapse all',
-            //expandAll: 'Expand all',
             collapsed: true,
         });
         lay.addTo(map);
@@ -338,7 +350,12 @@
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['Lote'] !== null?String('<div style="color: #ffffff; font-size: 8pt; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['Lote']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Vendidas_3'});
+            layer.bindTooltip(String(layer.feature.properties['Lote']), {
+                permanent: true,
+                direction: 'top',
+                className: 'etiqueta-vendida-circular',
+                offset: [0, 0]
+            }).openTooltip();
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
@@ -351,7 +368,12 @@
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['Lote'] !== null?String('<div style="color: #fff5f0; font-size: 8pt; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['Lote']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Disponibles_4'});
+            layer.bindTooltip(String(layer.feature.properties['Lote']), {
+                permanent: true,
+                direction: 'top',
+                className: 'etiqueta-disponible-circular',
+                offset: [0, 0]
+            }).openTooltip();
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
@@ -368,6 +390,6 @@
         map.on("layerremove", function(){
             resetLabels([layer_Vendidas_3,layer_Disponibles_4]);
         });
-        </script>
+</script>
     </body>
 </html>
