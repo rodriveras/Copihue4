@@ -1,73 +1,61 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <link rel="stylesheet" href="css/leaflet.css">
-        <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
-        <link rel="stylesheet" href="css/L.Control.Locate.min.css">
-        <link rel="stylesheet" href="css/qgis2web.css">
-        <link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="css/leaflet.photon.css">
-        <style>
+   <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/L.Control.Layers.Tree.css">
+    <link rel="stylesheet" href="css/L.Control.Locate.min.css">
+    <link rel="stylesheet" href="css/qgis2web.css">
+    <link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="css/leaflet.photon.css">
+    <style>
         #map {
             width: 1054px;
             height: 541px;
         }
-        </style>
-	    <style>
-    #map {
-        width: 1054px;
-        height: 541px;
-    }
-
-<style>
-<style>
-    #map {
-        width: 1054px;
-        height: 541px;
-    }
-    /* Estilo para la capa 'Vendidas' con fondo circular rojo */
-    .etiqueta-vendida-circular {
-        background-color: #ff0000;
-        color: #ffffff;
-        padding: 6px;
-        border-radius: 50%;
-        font-weight: bold;
-        font-size: 10px;
-        white-space: nowrap;
-        line-height: 1;
-        min-width: 25px;
-        text-align: center;
-    }
-    /* Estilo para la capa 'Disponibles' con fondo circular verde */
-    .etiqueta-disponible-circular {
-        background-color: #008000;
-        color: #ffffff;
-        padding: 6px;
-        border-radius: 50%;
-        font-weight: bold;
-        font-size: 10px;
-        white-space: nowrap;
-        line-height: 1;
-        min-width: 25px;
-        text-align: center;
-    }
-    /* Código para eliminar el pequeño triángulo de las etiquetas circulares */
-    .etiqueta-vendida-circular.leaflet-tooltip-top::before,
-    .etiqueta-disponible-circular.leaflet-tooltip-top::before {
-        border-style: none;
-    }
-</style>
-        <title></title>
-    </head>
+        /* Estilo para la capa 'Vendidas' con fondo circular rojo */
+        .etiqueta-vendida-circular {
+            background-color: #ff0000;
+            color: #ffffff;
+            padding: 6px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 10px;
+            white-space: nowrap;
+            line-height: 1;
+            min-width: 25px;
+            text-align: center;
+        }
+        /* Estilo para la capa 'Disponibles' con fondo circular verde */
+        .etiqueta-disponible-circular {
+            background-color: #008000;
+            color: #ffffff;
+            padding: 6px;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 10px;
+            white-space: nowrap;
+            line-height: 1;
+            min-width: 25px;
+            text-align: center;
+        }
+        /* Código para eliminar el pequeño triángulo de las etiquetas circulares */
+        .etiqueta-vendida-circular.leaflet-tooltip-top::before,
+        .etiqueta-disponible-circular.leaflet-tooltip-top::before {
+            border-style: none;
+        }
+    </style>
+    <title></title>
+</head>
     <body>
         <div id="map">
         </div>
         <script src="js/qgis2web_expressions.js"></script>
+<script src="js/qgis2web_expressions.js"></script>
 <script src="js/leaflet.js"></script>
 <script src="js/L.Control.Layers.Tree.min.js"></script>
 <script src="js/L.Control.Locate.min.js"></script>
